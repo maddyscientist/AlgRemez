@@ -4,3 +4,5 @@ target_include_directories(algremez PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../includ
 if(ENABLE_OPENMP)
   target_link_libraries(algremez PUBLIC OpenMP::OpenMP_CXX)
 endif()
+
+install(TARGETS algremez)
