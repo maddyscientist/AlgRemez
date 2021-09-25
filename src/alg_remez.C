@@ -29,7 +29,7 @@ AlgRemez::AlgRemez(double lower, double upper, long precision)
   apwidt = apend - apstrt;
 
   printf("Approximation bounds are [%e,%e]\n", (double)apstrt,(double)apend);
-  printf("Precision of arithmetic is %d\n", precision);
+  printf("Precision of arithmetic is %ld\n", precision);
 
   alloc = 0;
   n = 0;
@@ -112,10 +112,10 @@ double AlgRemez::generateApprox(int num_degree, int den_degree,
 				unsigned long pnum, unsigned long pden,
 				int a_len, double *a_param, int *a_pow)
 {
-  char *fname = "generateApprox(int, unsigned long, unsigned long)";
+  const char *fname = "generateApprox(int, unsigned long, unsigned long)";
 
   printf("Degree of the approximation is (%d,%d)\n", num_degree, den_degree);
-  printf("Approximating the function x^(%d/%d)\n", pnum, pden);
+  printf("Approximating the function x^(%lu/%lu)\n", pnum, pden);
 
   // Reallocate arrays, since degree has changed
   if (num_degree != n || den_degree != d) allocate(num_degree,den_degree);
@@ -605,7 +605,7 @@ int AlgRemez::root() {
     roots[i] = rtnewt(poly,i+1,lower,upper,tol);
     //printf("root[%d] = %e\n", i, (double)roots[i]);
     if (roots[i] == 0.0) {
-      printf("Failure to converge on root %d/%d\n", i+1, n);
+      printf("Failure to converge on root %ld/%d\n", i+1, n);
       return 0;
     }
     poly[0] = -poly[0]/roots[i];
@@ -621,7 +621,7 @@ int AlgRemez::root() {
     poles[i]=rtnewt(poly,i+1,lower,upper,tol);
     //printf("pole[%d] = %e\n", i, (double)poles[i]);
     if (poles[i] == 0.0) {
-      printf("Failure to converge on pole %d/%d\n", i+1, d);
+      printf("Failure to converge on pole %ld/%d\n", i+1, d);
       return 0;
     }
     poly[0] = -poly[0]/poles[i];

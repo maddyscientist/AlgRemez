@@ -93,8 +93,8 @@ int main (int argc, char* argv[]) {
   }
   fclose(error_file);
 
-  delete res;
-  delete pole;
+  delete[] res;
+  delete[] pole;
 
   exit(0);
 
