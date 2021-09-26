@@ -14,6 +14,11 @@
 
 int main (int argc, char* argv[]) {
 
+  if (argc != 8) {
+    printf("./test <numerator> <denominator> <deg numerator> <deg denominator> <lambda_low> <lambda_high> <precision>\n");
+    exit(0);
+  }  
+  
   int i=0;
   int n; // The degree of the numerator polynomial
   int d; // The degree of the denominator polynomial
@@ -25,18 +30,34 @@ int main (int argc, char* argv[]) {
   // Set the exponent
   sscanf(argv[++i],"%d",&y);
   sscanf(argv[++i],"%d",&z);  
-
+  if(y <= 0 || z <= 0) {
+    printf("Both the numerator y=%d and the denominator z=%d must be positive.\n", y, z);
+    exit(0);
+  }
+  
   // Set the required degree of approximation
   sscanf(argv[++i],"%d",&n);
   sscanf(argv[++i],"%d",&d);
+  if(n <= 0 || d <= 0) {
+    printf("Both the numerator degree n=%d and the denominator degree d=%d must be positive.\n", n, d);
+    exit(0);
+  }
 
   // Set the approximation bounds
   sscanf(argv[++i],"%le",&lambda_low);
   sscanf(argv[++i],"%le",&lambda_high);
+  if(lambda_low <= 0 || lambda_high <= 0) {
+    printf("Both the lower bound lambda_low=%e and the upper bound lambda_high=%e must be positive.\n", lambda_low, lambda_high);
+    exit(0);
+  }
 
   // Set the precision of the arithmetic
   sscanf(argv[++i],"%d",&precision);
-
+  if(precision <= 0) {
+    printf("The bit length precision=%d must be positive.\n", precision);
+    exit(0);
+  }
+  
   // The error from the approximation (the relative error is minimised
   // - if another error minimisation is requried, then line 398 in
   // alg_remez.C is where to change it)
