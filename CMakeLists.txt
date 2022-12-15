@@ -12,7 +12,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(ExternalProject)
 # Link OpempMP CMake automatically adds 
 # _OPENMP to the CXX flags
-option(ENABLE_OPENMP "enable OpenMP" ON)
+option(ENABLE_OPENMP "enable OpenMP" OFF)
 if(ENABLE_OPENMP)
   find_package(OpenMP)
 endif()
